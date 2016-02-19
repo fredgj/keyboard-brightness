@@ -21,7 +21,7 @@ need to alter the file permissions. The permissions need to be changed during
 initialization (systemd in most cases). This can be done by adding the following line 
 to your */etc/rc.local* file: **chmod 666 /sys/class/leds/samsung\:\:kbd_backlight/brightness**
 
-If your system doesn't have a */etc/rc.local* file either figure our how *rc.local* has been 
+If your system doesn't have a */etc/rc.local* file either figure out how *rc.local* has been 
 replaced or create a new *rc.local* file and a *rc-local.service* and add the service to systemd.
 To do this you need to create a new *rc-local.service* in */etc/systemd/system* and add the 
 following lines:
