@@ -22,8 +22,9 @@ initialization (systemd in most cases). This can be done by adding the following
 
 If your system doesn't have a /etc/rc.local file either figure our how rc.local have been 
 replaced or create a new rc.local file and a rc-local.service and add the service to systemd.
-To do this you need to create a rc-local.service in /etc/systemd/system and add the following 
-lines:
+To do this you need to create a new rc-local.service in /etc/systemd/system and add the 
+following lines:
+
 ```
  [Unit]
  Description=/etc/rc.local Compatibility
@@ -40,8 +41,8 @@ lines:
  [Install]
  WantedBy=multi-user.target
 ```
-Then run **sudo systemctl enable rc-local.service**, and now your keyboard backlight script 
-should work.
+Then run **sudo systemctl enable rc-local.service** to enable the service at bootup, and now 
+your keyboard backlight script should work.
 
 
 Usage
