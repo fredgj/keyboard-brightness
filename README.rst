@@ -9,7 +9,8 @@ to controll the keyboard backlight brightness.
 In my case I use fn + f9 and fn + 10 for turning the backlight brightness up and down.
 This can be done throught xbindkeys by adding the following lines to your .xbindkeysrcs file.
 
-..code::
+..line-block::
+
  "~/path/to/kbrightness.sh -d"
       m:0x0 + c:237
  "~/path/to/kbrightness.sh -u"
@@ -24,7 +25,8 @@ replaced or create a new rc.local file and a rc-local.service and add the servic
 To do this you need to create a rc-local.service in /etc/systemd/system and add the following 
 lines:
 
-..code::
+..line-block:: 
+
  [Unit]
  Description=/etc/rc.local Compatibility
  ConditionPathExists=/etc/rc.local
@@ -47,6 +49,8 @@ should work.
 Usage
 =====
 
-./kbrightness.sh -u *turns the brightness up by 1*
-./kbrightness.sh -d *turns the brightness down by 1*
-./kbrightness.sh -s 8 *sets the brightness to 8*
+..code:: sh
+
+ ./kbrightness.sh -u *turns the brightness up by 1*
+ ./kbrightness.sh -d *turns the brightness down by 1*
+ ./kbrightness.sh -s 8 *sets the brightness to 8*
