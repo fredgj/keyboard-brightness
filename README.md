@@ -4,9 +4,9 @@ Keyboard backlight brightness
 This is a script that lets you controll the keyboard backlight brightness on 
 Samsung Series 7 Chronos laptops. 
 
-It's useful if you need to conigure the special keys on the keyboard (fn + fX) in order
-to controll the keyboard backlight brightness.
-In my case I use fn + f9 and fn + 10 for turning the backlight brightness up and down.
+It's useful if you need to configure the special keys on the keyboard (fn + fX) in order
+to control the keyboard backlight brightness.
+In my case I use Fn + f9 and Fn + 10 for turning the backlight brightness up and down.
 This can be done through xbindkeys by adding the following lines to your .xbindkeysrcs file.
 
 ```
@@ -16,9 +16,10 @@ This can be done through xbindkeys by adding the following lines to your .xbindk
       m:0x0 + c:238
 ```
 
-Note that in order to make changes to the brightness file without being logged in as root, 
-you need to alter the file permissions. The permissions need to be changed during 
-initialization (systemd in most cases). This can be done by adding the following line to your /etc/rc.local file: chmod 666 /sys/class/leds/samsung\:\:kbd_backlight/brightness
+Note that in order to write to the the brightness file without being logged in as root you 
+need to alter the file permissions. The permissions need to be changed during 
+initialization (systemd in most cases). This can be done by adding the following line 
+to your /etc/rc.local file: chmod 666 /sys/class/leds/samsung\:\:kbd_backlight/brightness
 
 If your system doesn't have a /etc/rc.local file either figure our how rc.local have been 
 replaced or create a new rc.local file and a rc-local.service and add the service to systemd.
@@ -42,7 +43,7 @@ following lines:
  WantedBy=multi-user.target
 ```
 Then run **sudo systemctl enable rc-local.service** to enable the service at bootup, and now 
-your keyboard backlight script should work.
+your keyboard backlight script should work after the next reboot.
 
 
 Usage
