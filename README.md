@@ -7,7 +7,7 @@ Samsung Series 7 Chronos laptops.
 It's useful if you need to configure the special keys on the keyboard (fn + fX) in order
 to control the keyboard backlight brightness.
 In my case I use Fn + f9 and Fn + 10 for turning the backlight brightness up and down.
-This can be done through xbindkeys by adding the following lines to your .xbindkeysrcs file.
+This can be done through xbindkeys by adding the following lines to your .xbindkeysrc file.
 
 ```
  "~/path/to/kbrightness.sh -d"    
@@ -21,7 +21,7 @@ need to alter the file permissions. The permissions need to be changed during
 initialization (systemd in most cases). This can be done by adding the following line 
 to your */etc/rc.local* file: **chmod 666 /sys/class/leds/samsung\:\:kbd_backlight/brightness**
 
-If your system doesn't have a */etc/rc.local* file either figure our how *rc.local* have been 
+If your system doesn't have a */etc/rc.local* file either figure our how *rc.local* has been 
 replaced or create a new *rc.local* file and a *rc-local.service* and add the service to systemd.
 To do this you need to create a new *rc-local.service* in */etc/systemd/system* and add the 
 following lines:
