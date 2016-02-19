@@ -10,7 +10,6 @@ In my case I use fn + f9 and fn + 10 for turning the backlight brightness up and
 This can be done throught xbindkeys by adding the following lines to your .xbindkeysrcs file.
 
 ..code::
-
  "~/path/to/kbrightness.sh -d"
       m:0x0 + c:237
  "~/path/to/kbrightness.sh -u"
@@ -26,7 +25,6 @@ To do this you need to create a rc-local.service in /etc/systemd/system and add 
 lines:
 
 ..code::
- 
  [Unit]
  Description=/etc/rc.local Compatibility
  ConditionPathExists=/etc/rc.local
