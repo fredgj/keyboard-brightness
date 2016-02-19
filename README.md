@@ -7,7 +7,7 @@ Samsung Series 7 Chronos laptops.
 It's useful if you need to conigure the special keys on the keyboard (fn + fX) in order
 to controll the keyboard backlight brightness.
 In my case I use fn + f9 and fn + 10 for turning the backlight brightness up and down.
-This can be done throught xbindkeys by adding the following lines to your .xbindkeysrcs file.
+This can be done through xbindkeys by adding the following lines to your .xbindkeysrcs file.
 
 ```
  "~/path/to/kbrightness.sh -d"    
