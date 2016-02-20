@@ -31,6 +31,7 @@ eval set -- "$args"
 
 
 change=0
+brightness_file=/sys/class/leds/samsung\:\:kbd_backlight/brightness
 
 
 # parses command line options
@@ -54,6 +55,13 @@ while true; do
 done
 
 
+# Make sure that brithness file exists
+if [ ! -f $brightness_file ]; then
+	echo "Error: file" $brightness_file "doesn't exists"
+	exit 1
+fi
+
+
 # if brightness is already set with the -s/--set option, make
 # sure it's within its limits, otherwise set it to min or max
 if [ $brightness ]; then
@@ -64,18 +72,18 @@ if [ $brightness ]; then
 	fi
 else	
 	# reads current brightness and adds new value to it 
-	brightness=$(cat /sys/class/leds/samsung\:\:kbd_backlight/brightness)
+	brightness=$(cat $brightness_file)
 	brightness=$((brightness+change))
 fi
 
 if [ $brightness -ge 0 -a $brightness -le 8 ]; then
 	# writes new value to brightness file
-	echo $brightness > /sys/class/leds/samsung\:\:kbd_backlight/brightness
+	echo $brightness > $brightness_file
 fi
 
 
 if [ $verbose ]; then
-	brightness=$(cat /sys/class/leds/samsung\:\:kbd_backlight/brightness)
+	brightness=$(cat $brightness_file)
 	echo "Current keyboard backlight brightness:" $brightness
 fi
 
