@@ -73,7 +73,7 @@ if [ $brightness ]; then
 else	
 	# reads current brightness and adds new value to it 
 	brightness=$(cat $brightness_file)
-	brightness=$((brightness+change))
+	let brightness+=$change
 fi
 
 if [ $brightness -ge 0 -a $brightness -le 8 ]; then
