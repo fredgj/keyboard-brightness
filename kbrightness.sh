@@ -55,9 +55,9 @@ while true; do
 done
 
 
-# Make sure that brithness file exists
+# Make sure that brightness file exists at given path
 if [ ! -f $brightness_file ]; then
-	echo "Error: file" $brightness_file "doesn't exists"
+	echo "Error:" $brightness_file": No such file"
 	exit 1
 fi
 
