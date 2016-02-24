@@ -59,7 +59,7 @@ int parse_args(int argc, char *argv[], char **vars)
         {"set",     required_argument, 0,   's'},
         {"version", no_argument,       0,   'V'},
     };
-    
+
     /* return if no arguments given */
     if (argc == 1) {
         usage(name);
@@ -99,7 +99,7 @@ int parse_args(int argc, char *argv[], char **vars)
 
 
 int main(int argc, char *argv[])
-{	
+{
     FILE *fp;
     char brightness = 0;
     char brightness_set = 0;
@@ -107,14 +107,14 @@ int main(int argc, char *argv[])
     char verbose = 0;
     char *vars[4] = {&brightness, &brightness_set, &change, &verbose};
     int parse;
-    
+
     parse = parse_args(argc, argv, vars);
-    
+
     if (parse == FAILURE)
         return EXIT_FAILURE;
     else if (parse == SUCCESS_E)
         return EXIT_SUCCESS;
-    
+
     /* open brightness file, exit if failure */
     fp = fopen(BRIGHTNESS_PATH, "r+");
 
@@ -125,12 +125,12 @@ int main(int argc, char *argv[])
 
     if (change) {
         /* reads brightness from file,
-         * exit if failure */ 
+         * exit if failure */
         brightness = fgetc(fp);
-        
+
         if (brightness == EOF)
             return EXIT_FAILURE;
-        
+
         brightness += change;
     } else if (brightness_set) {
         /* Brightness is set, makes sure it's within limits */
@@ -139,7 +139,7 @@ int main(int argc, char *argv[])
         else if (brightness < MIN_BRIGHTNESS)
             brightness = MIN_BRIGHTNESS;
     }
-     
+
     if (brightness >= MIN_BRIGHTNESS && brightness <= MAX_BRIGHTNESS) {
         /* resets file position to 0 so old brightness value can
          * be overwritten */
@@ -156,20 +156,19 @@ int main(int argc, char *argv[])
         /* resets file position back to 0  */
         if (fseek(fp, 0, SEEK_SET) == -1)
             return EXIT_FAILURE;
-        
+
         /* Have to wait until everything is up to date after fseek */
         usleep(1);
-        
+
         /* reads brightness from file,
          * exit if failure*/
         brightness = fgetc(fp);
-        
+
         if (brightness == EOF)
             return EXIT_FAILURE;
 
         printf("Current keyboard backlight brightness: %d\n", brightness-48);
     }
-
 
     if (fclose(fp) == EOF)
         return EXIT_FAILURE;
