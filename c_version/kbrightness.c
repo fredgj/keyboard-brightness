@@ -116,19 +116,14 @@ int main(int argc, char *argv[])
         return EXIT_SUCCESS;
 
     /* open brightness file, exit if failure */
-    fp = fopen(BRIGHTNESS_PATH, "r+");
-
-    if (fp == NULL) {
+    if ((fp = fopen(BRIGHTNESS_PATH, "r+")) == NULL) {
         fprintf(stderr, "Error: %s: %s\n", BRIGHTNESS_PATH, strerror(errno));
         return EXIT_FAILURE;
     }
 
     if (change) {
-        /* reads brightness from file,
-         * exit if failure */
-        brightness = fgetc(fp);
-
-        if (brightness == EOF)
+        /* reads brightness from file, exit if failure */
+        if ((brightness = fgetc(fp)) == EOF)
             return EXIT_FAILURE;
 
         brightness += change;
@@ -146,8 +141,7 @@ int main(int argc, char *argv[])
         if (fseek(fp, 0, SEEK_SET) == -1)
             return EXIT_FAILURE;
 
-        /* writes the new value to brightness file,
-         * exit if failure */
+        /* writes the new value to brightness file, exit if failure */
         if (fputc(brightness, fp) == EOF)
             return EXIT_FAILURE;
     }
@@ -160,11 +154,8 @@ int main(int argc, char *argv[])
         /* Have to wait until everything is up to date after fseek */
         usleep(1);
 
-        /* reads brightness from file,
-         * exit if failure*/
-        brightness = fgetc(fp);
-
-        if (brightness == EOF)
+        /* reads brightness from file, exit if failure */
+        if ((brightness = fgetc(fp)) == EOF)
             return EXIT_FAILURE;
 
         printf("Current keyboard backlight brightness: %d\n", brightness-48);
