@@ -37,20 +37,20 @@ brightness_file=/sys/class/leds/samsung\:\:kbd_backlight/brightness
 
 # parses command line options
 while true; do
-	case "$1" in
-		-d|--down)
-			change=-1 ; shift ;;
-		-h|--help) 
+    case "$1" in
+        -d|--down)
+            change=-1 ; shift ;;
+        -h|--help) 
             usage ; exit 0 ;;
-		-s|--set)
-			brightness=$2 ; shift 2 ;;
-		-u|--up)
-			change=1 ; shift ;;
-		-v|--verbose) 
-			verbose=true ; shift ;;
-		-V|--version) 
-			echo_version ; exit 0 ;;
-		--) shift ; break ;;
+        -s|--set)
+            brightness=$2 ; shift 2 ;;
+        -u|--up)
+            change=1 ; shift ;;
+        -v|--verbose) 
+            verbose=true ; shift ;;
+        -V|--version) 
+            echo_version ; exit 0 ;;
+        --) shift ; break ;;
         *) usage ; exit 1 ;;
     esac
 done

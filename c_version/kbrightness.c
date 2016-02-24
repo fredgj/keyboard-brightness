@@ -101,7 +101,7 @@ int parse_args(int argc, char *argv[], char **vars)
 int main(int argc, char *argv[])
 {	
     FILE *fp;
-	char brightness = 0;
+    char brightness = 0;
     char brightness_set = 0;
     char change = 0;
     char verbose = 0;
@@ -174,6 +174,6 @@ int main(int argc, char *argv[])
     if (fclose(fp) == EOF)
         return EXIT_FAILURE;
 
-	return EXIT_SUCCESS;
+    return EXIT_SUCCESS;
 }
 
