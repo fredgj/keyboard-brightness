@@ -10,10 +10,10 @@ function usage {
 	echo $0 $'[options]\n'
 	echo $'Turn keyboard backlight brightness up or down\n'
 	echo $'Options:'
-	echo $' -d, --down\t turn keybord brightness up'
+	echo $' -d, --down\t turn keybord brightness down'
 	echo $' -h, --help\t display this help and exit'
-	echo $' -s, --set=VALUE sets keyboard brightness to a value between 0 and 8'
-	echo $' -u, --up\t turn keyboard brightness down'
+	echo $' -s, --set=VALUE set keyboard brightness to a value between 0 and 8'
+	echo $' -u, --up\t turn keyboard brightness up'
 	echo $' -v, --verbose\t more information on keyboard brightness when it runs'
 	echo $' -V, --version\t print version and exit'
 	
@@ -26,11 +26,12 @@ function echo_version {
 
 
 # adds command line options
-args=$(getopt -o dhs:uvV -l down,help,set:,up,verbose,Version -n 'kbrightness.sh' -- "$@")
+args=$(getopt -o dhs:uvV -l down,help,set:,up,verbose,version -n 'kbrightness.sh' -- "$@")
 eval set -- "$args"
 
 
-change=0
+change=$false
+brightness=$false
 brightness_file=/sys/class/leds/samsung\:\:kbd_backlight/brightness
 
 
@@ -70,13 +71,14 @@ if [ $brightness ]; then
 	elif [ $brightness -lt 0 ]; then
 		brightness=0
 	fi
-else	
+elif [ $change ]; then
 	# reads current brightness and adds new value to it 
 	brightness=$(cat $brightness_file)
 	let brightness+=$change
 fi
 
-if [ $brightness -ge 0 -a $brightness -le 8 ]; then
+
+if [ $brightness ] && [ $brightness -ge 0 -a $brightness -le 8 ]; then
 	# writes new value to brightness file
 	echo $brightness > $brightness_file
 fi
