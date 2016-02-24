@@ -158,7 +158,7 @@ int main(int argc, char *argv[])
             return EXIT_FAILURE;
         
         /* Have to wait until everything is up to date after fseek */
-        //usleep(1);
+        usleep(1);
         
         /* reads brightness from file,
          * exit if failure*/
